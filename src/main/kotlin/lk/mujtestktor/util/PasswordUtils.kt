@@ -5,7 +5,7 @@ import org.apache.commons.codec.digest.DigestUtils
 import java.security.SecureRandom
 
 fun getHashWithSalt(stringToHash: String, saltLength: Int = 2): String { //default value 2
-    val salt = SecureRandom.getInstance("SHA1").generateSeed(saltLength)
+    val salt = SecureRandom.getInstance("SHA1PRNG").generateSeed(saltLength)
     val saltAsHex = Hex.encodeHexString(salt)
     val hash = DigestUtils.sha256Hex("$saltAsHex$stringToHash")
     return "$saltAsHex:$hash"  //if we did not use SALT and Rainbow table can be used to decode passwords

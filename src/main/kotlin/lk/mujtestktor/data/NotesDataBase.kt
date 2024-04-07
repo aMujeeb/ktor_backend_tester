@@ -1,5 +1,6 @@
 package lk.mujtestktor.data
 
+import com.mongodb.ConnectionString
 import lk.mujtestktor.data.modal.Note
 import lk.mujtestktor.data.modal.User
 import lk.mujtestktor.util.checkHashForPassword
@@ -8,7 +9,7 @@ import org.litote.kmongo.eq
 import org.litote.kmongo.reactivestreams.KMongo
 
 class NotesDataBase : NoteDataAccessObject { //Main class for Mongo data base. Connectivity class
-    private val client = KMongo.createClient().coroutine
+    private val client = KMongo.createClient(ConnectionString("<connection string to mongo db>")).coroutine
 
     private val dataBase = client.getDatabase("NoteDataBase") // Name of database in Mongo
 
